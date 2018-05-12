@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Book from './Book';
 
-class BookList extends Component {
-  render () {
-    const { books, updateBookState } = this.props;
+function BookList (props) {
+  const { books, updateBookState } = props;
     const bookShelves = [
       {
         title: 'Currently Reading',
@@ -56,7 +55,6 @@ class BookList extends Component {
           </div>
         </div>
     );
-  }
 }
 
 export default BookList;

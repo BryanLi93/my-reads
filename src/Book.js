@@ -9,8 +9,8 @@ class Book extends Component {
                 <div className="book-top">
                     <img className="book-cover" src={ book.imageLinks && book.imageLinks.thumbnail } alt={ book.title } />
                     <div className="book-shelf-changer">
-                        <select onChange={event => updateBookState(book, event.target.value) } value={ book.shelf }>
-                            <option value="none" disabled>Move to...</option>
+                        <select onChange={event => updateBookState(book, event.target.value) } value={ book.shelf || 'none' }>
+                            <option value="" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
                             <option value="read">Read</option>
