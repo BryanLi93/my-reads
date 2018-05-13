@@ -11,11 +11,15 @@ class BookSearch extends Component {
     const shelfBooks = this.props.books;
     keyword && BooksAPI.search(keyword)
       .then(books => {
-        for (const shelfBook of shelfBooks) {
-          let book = books.find(book => book.id === shelfBook.id);
-          book && (book.shelf = shelfBook.shelf);
+        if (Array.isArray(books)) {
+          for (const shelfBook of shelfBooks) {
+            let book = books.find(book => book.id === shelfBook.id);
+            book && (book.shelf = shelfBook.shelf);
+          }
+          this.setState({ searchedBooks: books })
+        } else {
+          this.setState({ searchedBooks: [] })
         }
-        this.setState({ searchedBooks: books })
       });
   }
   render() {
@@ -39,7 +43,7 @@ class BookSearch extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {
-              Array.isArray(this.state.searchedBooks) && this.state.searchedBooks.map(book => {
+              this.state.searchedBooks.map(book => {
                 return (
                   <li key={book.id}>
                     <Book book={book} updateBookState={updateBookState} />

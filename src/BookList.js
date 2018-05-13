@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Book from './Book';
 
-function BookList (props) {
-  const { books, updateBookState } = props;
+function BookList ({ books, updateBookState }) {
     const bookShelves = [
       {
         title: 'Currently Reading',
